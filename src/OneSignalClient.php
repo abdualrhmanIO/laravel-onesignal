@@ -17,7 +17,7 @@ class OneSignalClient
     private $restApiKey;
     private $userAuthKey;
     private $additionalParams;
-
+    public $configs;
     /**
      * @var bool
      */
@@ -53,9 +53,8 @@ class OneSignalClient
 
     public function __construct($appId, $restApiKey, $userAuthKey)
     {
-        $this->appId = $appId;
-        $this->restApiKey = $restApiKey;
-        $this->userAuthKey = $userAuthKey;
+
+        $this->configs = \Config::get('onesignal');
 
         $this->client = new Client();
         $this->headers = ['headers' => []];
@@ -86,6 +85,12 @@ class OneSignalClient
         $this->additionalParams[$key] = $value;
 
         return $this;
+    }
+
+    public function setAppKeyIds($app = "default"){
+          $this->appId = $this->configs[$app]["app_id"];
+          $this->restApiKey = $this->configs[$app]["rest_api_key"];
+          $this->userAuthKey = $this->configs[$app]["user_auth_key"];
     }
 
     public function sendNotificationToUser($message, $userId, $url = null, $data = null, $buttons = null, $schedule = null) {
@@ -174,7 +179,7 @@ class OneSignalClient
         if(isset($schedule)){
             $params['send_after'] = $schedule;
         }
-        
+
         $this->sendNotificationCustom($params);
     }
 
