@@ -55,7 +55,7 @@ class OneSignalClient
     {
 
         $this->configs = \Config::get('onesignal');
-
+        $this->setAppKeyIds();
         $this->client = new Client();
         $this->headers = ['headers' => []];
         $this->additionalParams = [];

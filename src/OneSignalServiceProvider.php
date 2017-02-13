@@ -36,7 +36,7 @@ class OneSignalServiceProvider extends ServiceProvider
                 $config = $app['config']['onesignal'] ?: $app['config']['onesignal::config'];
             }
 
-            $client = new OneSignalClient($config['app_id'], $config['rest_api_key'], $config['user_auth_key']);
+            $client = new OneSignalClient($config['default']['app_id'], $config['default']['rest_api_key'], $config['default']['user_auth_key']);
 
             return $client;
         });
