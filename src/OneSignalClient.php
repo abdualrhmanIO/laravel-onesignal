@@ -101,6 +101,8 @@ class OneSignalClient
         $params = array(
             'app_id' => $this->appId,
             'contents' => $contents,
+            'ios_badgeType' => 'Increase',
+            'ios_badgeCount' => 1,
             'include_player_ids' => array($userId)
         );
 
@@ -131,6 +133,8 @@ class OneSignalClient
         $params = array(
             'app_id' => $this->appId,
             'contents' => $contents,
+            'ios_badgeType' => 'Increase',
+            'ios_badgeCount' => 1,
             'included_segments' => array('All')
         );
 
@@ -161,6 +165,8 @@ class OneSignalClient
         $params = array(
             'app_id' => $this->appId,
             'contents' => $contents,
+            'ios_badgeType' => 'Increase',
+            'ios_badgeCount' => 1,
             'included_segments' => [$segment]
         );
 
